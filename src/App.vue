@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" oncopy="return false" oncut="return false" onpaste="return false">
     <nav-header />
     <div class="body">
       <router-view/>
