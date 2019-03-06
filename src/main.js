@@ -3,16 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import * as firebase from 'firebase';
-
-var app = firebase.initializeApp({ 
-  apiKey: "AIzaSyCKlrlG3RUmOFTgur5BdUSspdpcAv1Zvo4",
-  authDomain: "affiliate-marketing-01.firebaseapp.com",
-  databaseURL: "https://affiliate-marketing-01.firebaseio.com",
-  projectId: "affiliate-marketing-01",
-  storageBucket: "affiliate-marketing-01.appspot.com",
-  messagingSenderId: "488368337878"
-})
 
 
 Vue.config.productionTip = false

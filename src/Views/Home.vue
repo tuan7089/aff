@@ -6,7 +6,6 @@
                     <img src="@/assets/icons/introduce-01.jpg" alt="Introduce">
                     <span class="title">Khoá Học Online Dành Cho</span>
                 </div>
-
                 <div class="content">
                     Công việc này rất phù hợp với người có nhiều thời gian rảnh như: học sinh, sinh viên, mẹ bỉm sữa, các bạn làm việc hành chính, dân văn phòng …
                 </div>

@@ -8,7 +8,8 @@
         <div class="form">
             <input type="text" placeholder="email@gmail.com" v-model="email">
             <input type="password"  placeholder="Mật khẩu" v-model="password">
-            <button @click="siginUp">Đăng ký</button>
+            <input type="password"  placeholder="Nhập lại mật khẩu" v-model="retypePassword">
+            <button @click="siginUp" class="btn-aff success">Đăng ký</button>
             
             <div>
                 <span>Bạn có tài khoản</span>
@@ -24,31 +25,43 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            retypePassword: ''
         }
     },
 
     methods: {
         siginUp() {
-            console.log(this.email)
-            console.log(this.password)
-            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-            .then(function(data) {
-                console.log('Success')
-                console.log(data)
-            })
-            .catch(function(error) {
-                console.log('Error')
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode == 'auth/weak-password') {
-                    alert('The password is too weak.');
-                } else {
-                    alert(errorMessage);
-                }
-                console.log(error);
-            });
+            if(this.retypePassword == this.password) {
+                var _this = this
+                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                .then(function(data) {
+                    firebase.database().ref('users/' + data.user.uid).set({
+                        email: data.user.email
+                    });
+
+                    _this.$message({
+                        message: 'Chúc mừng, bạn đã đăng ký thành công',
+                        type: 'success'
+                    });
+
+                    _this.$router.replace('bai-hoc')
+                })
+                .catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode == 'auth/weak-password') {
+                        alert('Mật khẩu quá yếu.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                });
+            } else {
+                 this.$message({
+                    message: 'Nhập lại mật khẩu không đúng!',
+                    type: 'warning'
+                });
+            }
         }
     }
 }
@@ -60,28 +73,6 @@ export default {
 
         .logo {
             font-size: 40px;
-        }
-
-        .form {
-            margin: 0 auto;
-            width: 300px;
-
-            input {
-                width: 100%;
-                height: 40px;
-                border-radius: 3px;
-                margin-top: 20px;
-                border: 1px solid #d9d9d9;
-                padding: 0 15px;
-                box-sizing: border-box;
-            }
-
-            button {
-                margin: 30px 0;
-                padding: 5px 10px;
-                font-size: 20px;
-                border: 1px solid #d9d9d9;
-            }
         }
     }
 </style>
