@@ -54,6 +54,7 @@ export default {
 <style lang="scss">
     .login {
         text-align: center;
+        margin-bottom: calc(100vh - 629px);
 
         .logo {
             font-size: 40px;

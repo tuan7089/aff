@@ -4,6 +4,8 @@
     <div class="body">
       <router-view/>
     </div>
+
+    <nav-footer />
   </div>
 </template>
 
@@ -30,12 +32,14 @@ var app = firebase.initializeApp({
 })
 
 import NavHeader from '@/components/NavHeader'
+import NavFooter from '@/components/NavFooter'
 import { log } from 'util';
 
 export default {
   name: 'App',
   components: {
-    'nav-header': NavHeader
+    'nav-header': NavHeader,
+    'nav-footer': NavFooter
   }
 }
 </script>

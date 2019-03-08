@@ -5,7 +5,7 @@
                 <router-link to="/" class=" middle-content title">
                     <!-- <img src="@/assets/images/logo.png" alt="Logo"> -->
                     <span>
-                        AFFILITE<br> MARKETING
+                        AFFILIATE<br> MARKETING
                     </span>
                 </router-link>
             </div>
@@ -23,14 +23,23 @@
                     <button v-else @click="signOut" class="btn-aff">Đăng xuất</button>
                 </div>
                 <div class="link-nav">
-                     <router-link to="/">
+                    <router-link to="/">
                         Trang chủ
                     </router-link>
-                    <router-link to="/lien-he">
-                        Liên hệ
+                    <router-link to="/hoc-kiem-tien-online">
+                        Học kiếm tiền online
                     </router-link>
-                    <router-link to="/bai-hoc">
-                        Học
+                    <router-link to="/huong-dan">
+                        Hướng Dẫn
+                    </router-link>
+                    <router-link to="/chien-dich-moi">
+                        Chiến Dịch Mới 
+                    </router-link>
+                    <router-link to="/tintuc">
+                       Tin Tức 
+                    </router-link>
+                    <router-link to="/Affiliate">
+                        Affiliate VIP 
                     </router-link>
                 </div>
             </div>

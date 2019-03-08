@@ -32,88 +32,9 @@ a {
 } 
 
 .body {
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    float: left;
     margin-top: 125px;
-
-    .home {
-        .introduce {
-            margin-top: 20px;
-            display: inline-block;
-            width: 100%;
-
-            .item {
-                float: left;    
-                width: 345px;
-                margin-right: 48px;
-
-                &.last {
-                    margin-right: 0;
-                }
-
-                .title {
-                    img {
-                        vertical-align: middle;
-                        margin-right: 7px;
-                    }
-                }
-
-                .content {
-                    margin-top: 15px;
-                    line-height: 1.7;
-                }
-            }
-        }
-
-        .special {
-            width: 950px;
-            margin: 50px auto;
-            border: 1px solid #d9d9d9;
-            padding: 20px;
-            position: relative;
-            border-radius: 3px;
-            text-align: center;
-            
-            .title {
-                background: #fff;
-                position: absolute;
-                top: -15px;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 2;
-                padding: 0 20px;
-            }
-        }
-
-        .course {
-            .content {
-                img {
-                    width: 400px;
-                    float: left;
-                }
-
-                .detail {
-                    float: left;
-                    width: 740px;
-                    padding: 0 20px;
-                    box-sizing: border-box;
-
-                    p {
-                        margin: 0;
-                    }
-
-                    .btn-buying {
-                        background: #42525f;
-                        color: #fff;
-                        border: 1px solid #d9d9d9;
-                        padding: 15px 20px;
-                        width: 100%;
-                        margin-top: 30px;
-                    }
-                }
-            }
-        }
-    }
 
     .form {
         margin: 0 auto;

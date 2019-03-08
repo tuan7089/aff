@@ -1,5 +1,5 @@
 <template>
-    <div class="login">
+    <div class="sign-up">
         <span class="logo">
             Affiliate Marketing
         </span>
@@ -68,8 +68,9 @@ export default {
 </script>
 
 <style lang="scss">
-    .login {
+    .sign-up {
         text-align: center;
+        margin-bottom: calc(100vh - 646px);
 
         .logo {
             font-size: 40px;

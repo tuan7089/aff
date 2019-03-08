@@ -5,7 +5,8 @@ import Home from '@/Views/Home'
 import Course from '@/Views/Course'
 import Login from '@/Views/Login'
 import Signup from '@/Views/Signup'
-import firebase from 'firebase'
+import AboutCourse from '@/Views/AboutCourse'
+import RegistrationGuide from '@/Views/RegistrationGuide'
 
 Vue.use(Router)
 
@@ -23,11 +24,26 @@ const router =  new Router({
       component: Login
     },
 
+    // HOme
     {
       path: '/',
       name: 'Home',
       component: Home
     },
+
+    {
+      path: '/hoc-kiem-tien-online',
+      name: 'AboutCourse',
+      component: AboutCourse
+    },
+
+    {
+      path: '/huong-dan',
+      name: 'RegistrationGuide',
+      component: RegistrationGuide
+    },
+    // End Home
+
     {
       path: '/thanh-toan',
       name: 'Card',
