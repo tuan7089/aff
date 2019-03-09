@@ -32,6 +32,12 @@ const router =  new Router({
     },
 
     {
+      path: '/home',
+      name: 'Chu',
+      component: Home
+    },
+
+    {
       path: '/hoc-kiem-tien-online',
       name: 'AboutCourse',
       component: AboutCourse

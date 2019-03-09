@@ -34,12 +34,21 @@ var app = firebase.initializeApp({
 import NavHeader from '@/components/NavHeader'
 import NavFooter from '@/components/NavFooter'
 import { log } from 'util';
+import store from '@/store/store'
 
 export default {
   name: 'App',
   components: {
     'nav-header': NavHeader,
     'nav-footer': NavFooter
+  },
+
+  mounted() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            store.commit('setSignIn', true)
+        }
+    });
   }
 }
 </script>

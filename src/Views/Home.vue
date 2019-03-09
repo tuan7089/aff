@@ -5,38 +5,40 @@
         </div> -->
         <div class="introduce">
             <h1>Xin chào bạn,cảm ơn bạn đã ghé thăm trang web kiếm tiền <br>Online Affiliate Marketing !</h1>
-            <center><img src="@/assets/images/home.jpg" alt="Home" style="width:100%;"></center>
-            <div class="item">
-                <div class="title">
-                    <img src="@/assets/icons/introduce-02.jpg" alt="Introduce">
-                    <span class="title">Giới thiệu</span>
+            <center><img src="@/assets/images/home.png" alt="Home"></center>
+            
+            <div class="wrapper-item">
+                <div class="item">
+                    <div class="title">
+                        <img src="@/assets/icons/introduce-02.jpg" alt="Introduce">
+                        <span class="title">Giới thiệu</span>
+                    </div>
+
+                    <div class="content">
+                        <p>Hôm nay mình sẽ giới thiệu đến bạn một hình thức kiếm tiền online khá đơn giản và hiệu quả. 
+                        Đó chính là kiếm tiền từ Review sản phẩm. </p><p>Với công việc này, kiếm tiền online và tăng thu nhập mỗi ngày là vô cùng dễ dàng với bạn. </p>
+                    </div>
                 </div>
 
-                <div class="content">
-                    <p>Hôm nay mình sẽ giới thiệu đến bạn một hình thức kiếm tiền online khá đơn giản và hiệu quả. 
-Đó chính là kiếm tiền từ Review sản phẩm. </p><p>Với công việc này, kiếm tiền online và tăng thu nhập mỗi ngày là vô cùng dễ dàng với bạn. </p>
-
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="title">
-                    <img src="@/assets/icons/introduce-01.jpg" alt="Introduce">
-                    <span class="title">Khoá Học Online Dành Cho</span>
-                </div>
-                <div class="content">
-                     Công việc này rất phù hợp với những người có nhiều thời gian rảnh như: học sinh, sinh viên, mẹ bỉm sữa, dân văn phòng. 
-                </div>
-            </div>
-
-            <div class="item last">
-                <div class="title">
-                    <img src="@/assets/icons/introduce-03.jpg" alt="Introduce">
-                    <span class="title">Yêu Cầu</span>
+                <div class="item">
+                    <div class="title">
+                        <img src="@/assets/icons/introduce-01.jpg" alt="Introduce">
+                        <span class="title">Khoá Học Online Dành Cho</span>
+                    </div>
+                    <div class="content">
+                        Công việc này rất phù hợp với những người có nhiều thời gian rảnh như: học sinh, sinh viên, mẹ bỉm sữa, dân văn phòng. 
+                    </div>
                 </div>
 
-                <div class="content">
-                    Chỉ cần có  thẻ ATM, máy tính, điện thoại có kết nối 3g, wifi là bạn có thể tham gia kiếm tiền linh hoạt mọi lúc, mọi nơi …Với hình thức này bạn có thể kiếm được số tiền 200.000đ-500.000đ  từ 1- 2 tiếng/ngày là hoàn toàn khả thi nhé. 
+                <div class="item last">
+                    <div class="title">
+                        <img src="@/assets/icons/introduce-03.jpg" alt="Introduce">
+                        <span class="title">Yêu Cầu</span>
+                    </div>
+
+                    <div class="content">
+                        Chỉ cần có  thẻ ATM, máy tính, điện thoại có kết nối 3g, wifi là bạn có thể tham gia kiếm tiền linh hoạt mọi lúc, mọi nơi …Với hình thức này bạn có thể kiếm được số tiền 200.000đ-500.000đ  từ 1- 2 tiếng/ngày là hoàn toàn khả thi nhé. 
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,6 +53,17 @@
                 <span>Thay đổi suy nghĩ, phát triển tư duy!</span>
             </div>
         </div>
+
+        <div class="buy">
+            <center>
+                <router-link to="/thanh-toan">
+                    <button class="btn-aff btn-buy">
+                        THAM GIA KHOÁ HỌC NGAY
+                    </button>
+                </router-link>
+                
+            </center>
+        </div>
     </div>
 </template>
 
@@ -60,34 +73,42 @@
     max-width: 1140px;
     margin: 0 auto;
 
+    .btn-buy {
+        margin-bottom: 50px;
+    }
+
     .introduce {
         h1 {
             text-align: center;
-            margin: 10px 0 50px 0;
+            margin: 10px 0 30px 0;
         }
         margin-top: 20px;
         display: inline-block;
         width: 100%;
 
-        .item {
-            float: left;    
-            width: 345px;
-            margin-right: 48px;
+        .wrapper-item {
+            margin-top: 15px;
 
-            &.last {
-                margin-right: 0;
-            }
+            .item {
+                float: left;    
+                width: 345px;
+                margin-right: 48px;
 
-            .title {
-                img {
-                    vertical-align: middle;
-                    margin-right: 7px;
+                &.last {
+                    margin-right: 0;
                 }
-            }
 
-            .content {
-                margin-top: 15px;
-                line-height: 1.7;
+                .title {
+                    img {
+                        vertical-align: middle;
+                        margin-right: 7px;
+                    }
+                }
+
+                .content {
+                    margin-top: 15px;
+                    line-height: 1.7;
+                }
             }
         }
     }
@@ -100,6 +121,7 @@
         position: relative;
         border-radius: 3px;
         text-align: center;
+        font-size: 20px;
         
         .title {
             background: #fff;

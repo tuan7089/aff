@@ -127,9 +127,13 @@ Vậy, tại sao lại có thể kiếm tiền từ hình thức này? và phư�
                     </strong>
                 </p>
 
-                <center><button class="btn-aff btn-buy">
-                    YES! TÔI MUỐN SỞ HỮU NGAY KHÓA HỌC NÀY
-                </button>
+                <center>
+                    <router-link to="/thanh-toan">
+                        <button class="btn-aff btn-buy">
+                            YES! TÔI MUỐN SỞ HỮU NGAY KHÓA HỌC NÀY
+                        </button>
+                    </router-link>
+                    
                 </center>
             </div>
         </div>
@@ -227,18 +231,7 @@ Vậy, tại sao lại có thể kiếm tiền từ hình thức này? và phư�
                     margin: 0;
                 }
             }
-
-            .btn-buy {
-                padding: 15px 30px;
-                font-size: 22px;
-                background: #3a8ee6;
-                color: #fff;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
+            
             padding-bottom: 150px;
         }
         

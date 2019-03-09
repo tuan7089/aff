@@ -20,25 +20,26 @@
                             <el-button>Đăng ký</el-button>
                         </router-link>
                     </div>
-                    <button v-else @click="signOut" class="btn-aff">Đăng xuất</button>
+                    <button v-else @click="signOut" class="btn-aff signOut">Đăng xuất</button>
+                    
                 </div>
                 <div class="link-nav">
                     <router-link to="/">
                         Trang chủ
                     </router-link>
                     <router-link to="/hoc-kiem-tien-online">
-                        Học kiếm tiền online
+                        Thông tin khoá học
                     </router-link>
                     <router-link to="/huong-dan">
                         Hướng Dẫn
                     </router-link>
-                    <router-link to="/chien-dich-moi">
+                    <router-link to="/chien-dich-moi" class="link-disable">
                         Chiến Dịch Mới 
                     </router-link>
-                    <router-link to="/tintuc">
+                    <router-link to="/tintuc" class="link-disable">
                        Tin Tức 
                     </router-link>
-                    <router-link to="/Affiliate">
+                    <router-link to="/Affiliate" class="link-disable">
                         Affiliate VIP 
                     </router-link>
                 </div>
@@ -49,52 +50,31 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import firebase from 'firebase'
+import store from '@/store/store'
 
 export default {
-    data() {
-        return {
-            // signIn: false
-        }
-    },
-
-    computed: {
-        signIn() {
-            firebase.auth().onAuthStateChanged(function(user) {
-            console.log(user)
-                if (user) {
-                    return true
-                    // var defaultAuth = firebase.auth();
-                    // var uid = user.uid
-                    // console.log(uid)
-                    // var _this = this
-                    // var ref = firebase.database().ref("users/" + uid + '/status');
-                    // ref.once("value")
-                    // .then(function(snapshot) {
-                    //     var key     = snapshot.key // "ada"
-                    //     var status  = snapshot.val()
-                
-                    //     console.log(status)
-                    // });
-                } else {
-                    return false
-                }
-                });
-            return false
-        }
-    },
-
-    mounted() {
-        
-    },
+    // data() {
+    //     return {
+    //         signIn: false
+    //     }
+    // },
+    computed: mapState({
+        signIn: state => state.signIn,
+    }),
 
     methods: {
         signOut() {
             console.log('ra')
             var _this = this
-            firebase.auth().signOut().then(function() {
+            firebase.auth().signOut()
+            .then(function() {
+                _this.$router.replace('/home')
+                store.commit('setSignIn', false)
+                store.commit('setStudent', false)
+            }).catch(function(error) {
                 _this.$router.replace('/')
-                }).catch(function(error) {
             });
         }
     }
@@ -152,14 +132,21 @@ export default {
                         background: #4267b2;
                         margin-right: 15px;
                     }
+
+                    &.signOut {
+                        color: #fff;
+                        background: #3e68bd
+                    }
                 }
             }
 
             .link-nav {
                 margin-top: 15px;
+                text-align: right;
+
                 a {
                     padding: 5px 12px;
-                    margin-right: 20px;
+                    margin-left: 20px;
                     color: #fff;
                     font-size: 16px;
                     border-radius: 2px;

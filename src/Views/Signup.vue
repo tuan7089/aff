@@ -51,13 +51,16 @@ export default {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     if (errorCode == 'auth/weak-password') {
-                        alert('Mật khẩu quá yếu.');
+                        this.$message({
+                            message: 'Mật khẩu quá yếu!',
+                            type: 'warning'
+                        });
                     } else {
-                        alert(errorMessage);
+                        this.$message.error('Email này đã tồn tại!.');
                     }
                 });
             } else {
-                 this.$message({
+                this.$message({
                     message: 'Nhập lại mật khẩu không đúng!',
                     type: 'warning'
                 });

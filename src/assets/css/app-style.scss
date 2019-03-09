@@ -7,9 +7,17 @@ body {
     line-height: 1.7;
 }
 
+.el-message__content {
+    font-size: 17px;
+}
+
 a {
     text-decoration: unset;
 }
+
+.link-disable {
+    pointer-events: none;
+}   
 
 // Atomic CSS
 .btn-aff {
@@ -23,6 +31,18 @@ a {
         color: #fff;
         background: #4775d2;
     }
+
+    &.btn-buy {
+        padding: 15px 30px;
+        font-size: 22px;
+        background: #3a8ee6;
+        color: #fff;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
 }
 
 //General 

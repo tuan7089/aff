@@ -17,3 +17,10 @@
         <router-link to='/bai-hoc'>Xem video bài học</router-link>
     </div>
 </template>
+<style lang="scss">
+.card {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+</style>

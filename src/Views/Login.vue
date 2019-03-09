@@ -17,6 +17,8 @@
     </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
+import store from '@/store/store'
 import firebase from 'firebase'
 
 export default {
@@ -29,22 +31,47 @@ export default {
 
     methods: {
         login() {
-            console.log('âssa')
             var _this = this
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(function(data) {
-                _this.$router.replace('bai-hoc')
+                store.commit('setSignIn', true)
+                _this.checkStudent()
             })
             .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/wrong-password') {
-                alert('Wrong password.');
-            } else {
-                alert(errorMessage);
-            }
-            console.log(error);
+                _this.$message({
+                    message: 'Email hoặc mật khẩu không chính xác.',
+                    type: 'warning'
+                });
+            });
+        },
+
+        checkStudent() {
+            var _this = this
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    var defaultAuth = firebase.auth();
+                    var uid = user.uid
+                    var ref = firebase.database().ref("users/" + uid + '/status');
+                    ref.once("value")
+                    .then(function(snapshot) {
+                        var key     = snapshot.key // "ada"
+                        var status  = snapshot.val()
+
+                        if(status == 1) {
+                            store.commit('setStudent', true)
+                            _this.$router.replace('/bai-hoc')
+                        }else {
+                            _this.$router.replace('/thanh-toan')
+
+                            _this.$message({
+                                message: 'Bạn chưa mua khoá học, hãy mua khoá học để bắt đầu học ngay nào.',
+                                type: 'warning'
+                            });
+                        }
+                    });
+                } else {
+                    // _this.$router.replace('/dang-ky')
+                }
             });
         }
     }
