@@ -5,7 +5,9 @@ import Home from '@/Views/Home'
 import Course from '@/Views/Course'
 import Login from '@/Views/Login'
 import Signup from '@/Views/Signup'
+import Account from '@/Views/Account'
 import AboutCourse from '@/Views/AboutCourse'
+import ManagerStudent from '@/Views/ManagerStudent'
 import RegistrationGuide from '@/Views/RegistrationGuide'
 
 Vue.use(Router)
@@ -48,18 +50,36 @@ const router =  new Router({
       name: 'RegistrationGuide',
       component: RegistrationGuide
     },
-    // End Home
 
     {
       path: '/thanh-toan',
       name: 'Card',
       component: () => import(/* webpackChunkName: "Card" */ '@/Views/Card')
     },
+    // End Home
+
+    // Admin
+    {
+      path: '/quan-ly',
+      name: 'ManagerStudent',
+      component: ManagerStudent
+    },
+    // End Admin
+
+    // Studen
     {
       path: '/bai-hoc',
       name: 'Course',
       component: Course
-    }
+    },
+    // End Student
+
+    // User
+    {
+      path: '/tai-khoan',
+      name: 'Account',
+      component: Account
+    },
 
 
   ]

@@ -20,7 +20,14 @@
                             <el-button>Đăng ký</el-button>
                         </router-link>
                     </div>
-                    <button v-else @click="signOut" class="btn-aff signOut">Đăng xuất</button>
+                    <div v-else>
+                        <router-link to="quan-ly" v-if="isAdmin && isAdmin==true">
+                            <button class="btn-aff el-button">Quản lý học viên</button>
+                        </router-link>
+                        
+                        <button @click="signOut" class="btn-aff signOut">Đăng xuất</button>
+                    </div>
+                    
                     
                 </div>
                 <div class="link-nav">
@@ -33,14 +40,20 @@
                     <router-link to="/huong-dan">
                         Hướng Dẫn
                     </router-link>
-                    <router-link to="/chien-dich-moi" class="link-disable">
+                    <!-- <router-link to="/chien-dich-moi" class="link-disable">
                         Chiến Dịch Mới 
-                    </router-link>
+                    </router-link> -->
                     <router-link to="/tintuc" class="link-disable">
                        Tin Tức 
                     </router-link>
-                    <router-link to="/Affiliate" class="link-disable">
+                    <!-- <router-link to="/Affiliate" class="link-disable">
                         Affiliate VIP 
+                    </router-link> -->
+                    <router-link to="/bai-hoc" v-if="isStudent">
+                        Bài học 
+                    </router-link>
+                    <router-link to="/tai-khoan" v-if="signIn">
+                        Trang cá nhân
                     </router-link>
                 </div>
             </div>
@@ -57,16 +70,19 @@ import store from '@/store/store'
 export default {
     // data() {
     //     return {
-    //         signIn: false
+    //         admin: false
     //     }
     // },
-    computed: mapState({
-        signIn: state => state.signIn,
-    }),
+    computed: {
+        ...mapState({
+            signIn: state => state.signIn,
+            isAdmin: state => state.isAdmin,
+            isStudent: state => state.isStudent
+        })
+    },
 
     methods: {
         signOut() {
-            console.log('ra')
             var _this = this
             firebase.auth().signOut()
             .then(function() {
@@ -77,6 +93,10 @@ export default {
                 _this.$router.replace('/')
             });
         }
+    },
+
+    mounted() {
+        
     }
 }
 </script>
@@ -88,13 +108,14 @@ export default {
     background-color: #4267b2;
     border-bottom: 1px solid #29487d;
     color: #fff;
-    z-index: 1000;
+    float: left;
+    // z-index: 1000;
     width: 100%;
-    position: fixed;
-    top: 0;
+    // position: fixed;
+    // top: 0;
     
    
-
+    
     .row-header {
         width: 80%;
         margin: auto;
@@ -136,6 +157,10 @@ export default {
                     &.signOut {
                         color: #fff;
                         background: #3e68bd
+                    }
+
+                    &.el-button {
+                        margin-right: 15px;
                     }
                 }
             }

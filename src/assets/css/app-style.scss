@@ -5,6 +5,12 @@ body {
     margin: 0;
     font-family: "Arial", Times, serif;
     line-height: 1.7;
+    box-sizing: border-box;
+}
+
+#app {
+    float: left;
+    width: 100%;
 }
 
 .el-message__content {
@@ -54,7 +60,7 @@ a {
 .body {
     width: 100%;
     float: left;
-    margin-top: 125px;
+    margin-top: 15px;
 
     .form {
         margin: 0 auto;
@@ -75,3 +81,38 @@ a {
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .about-course {
+        width: 100%;
+        display: block !important;
+
+        .left {
+            width: 100% !important;
+        }
+
+        .center {
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding-bottom: 50px !important;
+        }
+
+        .right {
+            // display: none;
+            width: 100% !important;
+        }
+    }
+
+    .nav-footer {
+        display: inline;
+    }
+
+    .login {
+        margin-bottom: 250px !important;
+    }
+
+    .sign-up {
+        margin-bottom: 250px !important;
+    }
+}
+  

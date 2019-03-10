@@ -34,10 +34,12 @@ export default {
             var _this = this
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(function(data) {
+                console.log('Là sao')
                 store.commit('setSignIn', true)
                 _this.checkStudent()
             })
             .catch(function(error) {
+                console.log(error)
                 _this.$message({
                     message: 'Email hoặc mật khẩu không chính xác.',
                     type: 'warning'
@@ -47,30 +49,36 @@ export default {
 
         checkStudent() {
             var _this = this
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    var defaultAuth = firebase.auth();
-                    var uid = user.uid
-                    var ref = firebase.database().ref("users/" + uid + '/status');
-                    ref.once("value")
-                    .then(function(snapshot) {
-                        var key     = snapshot.key // "ada"
-                        var status  = snapshot.val()
+            var defaultAuth = firebase.auth();
+            var user = defaultAuth.currentUser
+            var uid = user.uid
+            
+            // Lấy thông tin cá nhân người dùng
+            var ref = firebase.database().ref("users/" + uid);
+                ref.once("value").then(function(snapshot) {
+                var key     = snapshot.key // Referral code
+                var detail  = snapshot.val()
+                console.log(detail)
 
-                        if(status == 1) {
-                            store.commit('setStudent', true)
-                            _this.$router.replace('/bai-hoc')
-                        }else {
-                            _this.$router.replace('/thanh-toan')
+                store.commit('setDataUser', {account: detail, code: key})
+            })
 
-                            _this.$message({
-                                message: 'Bạn chưa mua khoá học, hãy mua khoá học để bắt đầu học ngay nào.',
-                                type: 'warning'
-                            });
-                        }
+            var ref = firebase.database().ref("users/" + uid + '/status');
+            ref.once("value")
+            .then(function(snapshot) {
+                var key     = snapshot.key // "ada"
+                var status  = snapshot.val()
+
+                if(status == 1) {
+                    store.commit('setStudent', true)
+                    _this.$router.replace('/bai-hoc')
+                }else {
+                    _this.$router.replace('/thanh-toan')
+
+                    _this.$message({
+                        message: 'Bạn chưa mua khoá học, hãy mua khoá học để bắt đầu học ngay nào.',
+                        type: 'warning'
                     });
-                } else {
-                    // _this.$router.replace('/dang-ky')
                 }
             });
         }

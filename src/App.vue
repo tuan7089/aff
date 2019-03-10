@@ -47,8 +47,34 @@ export default {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             store.commit('setSignIn', true)
+
+            var email = firebase.auth().currentUser.email
+            var ref = firebase.database().ref("admin");
+
+            ref.once("value")
+            .then(function(snapshot) {
+                var key     = snapshot.key // "ada"
+                var admin  = snapshot.val()
+
+                var check_admin = admin.includes(email)
+                store.commit('setAdmin', check_admin)
+            });
         }
     });
+
+    // Check Mobile or Desktop
+    const ro = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        const cr = entry.contentRect;
+
+        if (cr.width <= 600){
+          this.$store.commit("setMobile", true)
+        } 
+        else this.$store.commit("setMobile", false)
+      }
+    });
+    // Only observe the second box
+    ro.observe(document.querySelector("#app"));
   }
 }
 </script>

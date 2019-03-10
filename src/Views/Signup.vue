@@ -36,8 +36,11 @@ export default {
                 var _this = this
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(function(data) {
+                    console.log(data)
+                    console.log(data.user)
                     firebase.database().ref('users/' + data.user.uid).set({
-                        email: data.user.email
+                        email: data.user.email,
+                        date: data.user.metadata.creationTime
                     });
 
                     _this.$message({
@@ -45,7 +48,7 @@ export default {
                         type: 'success'
                     });
 
-                    _this.$router.replace('bai-hoc')
+                    _this.$router.replace('thanh-toan')
                 })
                 .catch(function(error) {
                     var errorCode = error.code;

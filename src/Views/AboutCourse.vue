@@ -84,10 +84,10 @@ Vậy, tại sao lại có thể kiếm tiền từ hình thức này? và phư�
                 </p>
                 <p>
                     <strong>
-                        Để bài viết của bạn đạt chất  lượng được kiểm duyệt và kiếm được tiền thì bạn cần học qua 1 khoá học online gồm 17 video sau.
+                        Để bài viết của bạn đạt chất  lượng được kiểm duyệt và kiếm được tiền thì bạn cần học qua 1 khoá học online gồm 17 video.
                     </strong>
                 </p>
-                <div class="bai-hoc">
+                <!-- <div class="bai-hoc">
                     <p><strong>Bài 1 :</strong> Giới thiệu về chương trình kiếm tiền từ Review sản phẩm</p>
                     <p><strong>Bài 2 :</strong> Hướng dẫn đăng kí tài khoản thực chiến kiếm tiền</p>
                     <p><strong>Bài 3 :</strong> Nguyên tắc trước khi Review</p>
@@ -105,7 +105,7 @@ Vậy, tại sao lại có thể kiếm tiền từ hình thức này? và phư�
                     <p><strong>Bài 15 :</strong> Cách liên hệ khi cần hỗ trơ trực tiếp trên web</p>
                     <p><strong>Bài 16 :</strong> Lưu ý và Tổng kết</p>
                     <p><strong>Bài 17 :</strong> Kiếm ngay 5 triệu đến 30 triệu mỗi tháng cùng affiliate marketing</p>
-                </div>
+                </div> -->
                 <p>
                     <strong>
                         Bạn chỉ cần áp dụng theo đúng khóa học - thực hành luôn sau đó và  tiền về tài khoản trong 30p . Đồng thời bạn được sử dụng khóa học mãi mãi , quên ở đâu học lại ở đó . 
@@ -128,7 +128,7 @@ Vậy, tại sao lại có thể kiếm tiền từ hình thức này? và phư�
                 </p>
 
                 <center>
-                    <router-link to="/thanh-toan">
+                    <router-link to="/huong-dan">
                         <button class="btn-aff btn-buy">
                             YES! TÔI MUỐN SỞ HỮU NGAY KHÓA HỌC NÀY
                         </button>

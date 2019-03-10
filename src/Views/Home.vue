@@ -56,7 +56,7 @@
 
         <div class="buy">
             <center>
-                <router-link to="/thanh-toan">
+                <router-link to="/huong-dan">
                     <button class="btn-aff btn-buy">
                         THAM GIA KHOÁ HỌC NGAY
                     </button>
@@ -82,17 +82,24 @@
             text-align: center;
             margin: 10px 0 30px 0;
         }
+
+        center {
+            img {
+                width: 100%;
+            }
+        }
+        
         margin-top: 20px;
         display: inline-block;
         width: 100%;
 
         .wrapper-item {
-            margin-top: 15px;
-
             .item {
+                margin-top: 15px;
                 float: left;    
                 width: 345px;
                 margin-right: 48px;
+                max-width: 100%;
 
                 &.last {
                     margin-right: 0;
@@ -114,7 +121,8 @@
     }
 
     .special {
-        width: 950px;
+        width: 100%;
+        box-sizing: border-box;
         margin: 50px auto;
         border: 1px solid #d9d9d9;
         padding: 20px;
