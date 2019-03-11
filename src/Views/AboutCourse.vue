@@ -63,10 +63,10 @@ Vậy, tại sao lại có thể kiếm tiền từ hình thức này? và phư�
                 </p>
                 <ul>
                     <li>
-                        Hình ảnh: Trong bài review bạn phải đính kèm một ảnh gốc – ảnh chưa qua bất kỳ một phần mềm chỉnh sửa nào. Ngoài ra ảnh phải rõ nét và không quá nhỏ.
+                        <strong>Hình ảnh:</strong> Trong bài review bạn phải đính kèm một ảnh gốc – ảnh chưa qua bất kỳ một phần mềm chỉnh sửa nào. Ngoài ra ảnh phải rõ nét và không quá nhỏ.
                     </li>
                     <li>
-                        Hình ảnh: Trong bài review bạn phải đính kèm một ảnh gốc – ảnh chưa qua bất kỳ một phần mềm chỉnh sửa nào. Ngoài ra ảnh phải rõ nét và không quá nhỏ.
+                        <strong>Độ dài:</strong> Bài review độ dài <strong>tối thiểu là 150 từ (không phải 150 ký tự bạn nhé)</strong>
                     </li>
                 </ul>
                 <span>2. Bài review không nhất thiết là bài đầu tiên</span>

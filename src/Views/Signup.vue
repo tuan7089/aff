@@ -20,6 +20,7 @@
 </template>
 <script>
 import firebase from 'firebase'
+import store from '@/store/store'
 
 export default {
     data() {
@@ -36,12 +37,17 @@ export default {
                 var _this = this
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(function(data) {
-                    console.log(data)
-                    console.log(data.user)
-                    firebase.database().ref('users/' + data.user.uid).set({
+                    var code = store.state.codeXXX
+                    // 
+                    var dataSend = {
                         email: data.user.email,
-                        date: data.user.metadata.creationTime
-                    });
+                        date: data.user.metadata.creationTime,
+                    }
+                    if(code != '') {
+                        dataSend = Object.assign({}, dataSend, {code: code})
+                    }
+
+                    firebase.database().ref('users/' + data.user.uid).set(dataSend);
 
                     _this.$message({
                         message: 'Chúc mừng, bạn đã đăng ký thành công',

@@ -14,6 +14,8 @@ Vue.use(Router)
 
 const router =  new Router({
   routes: [
+    // Mã giới thiệu
+    { path: '/ma-gioi-thieu/:id', component: Home },
     {
       path: '/dang-ky',
       name: 'Signup',

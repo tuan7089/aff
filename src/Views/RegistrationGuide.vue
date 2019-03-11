@@ -8,7 +8,7 @@
             <p>
                 Sau đó vui lòng nhấn vào phần <router-link to="dang-ky"> đăng ký ngay </router-link>
             </p>
-            <p>Làm theo <router-link to="thanh-toan">hướng dẫn thanh toán học phí</router-link>
+            <p>Làm theo <router-link to="thanh-toan">hướng dẫn thanh toán học phí</router-link  >
             <p>Sau khi thanh toán hoàn tất bạn sẽ được kích hoạt khoá học và bắt đầu vào học ngay sau đó</p>
             <p>Mọi thắc mắc xin vào đây để được trợ giúp</p>
             <p><i>Chat trực tiếp trên web để được giải đáp ngay</i></p>
@@ -21,10 +21,10 @@
 </template>
 <style lang="scss">
     .guide {
-        width: 80%;
+        width: 85%;
         max-width: 1140px;
         margin: auto;
-        margin-bottom: calc(100vh - 700px);
+        margin-bottom: 350px;
     }
 </style>
 

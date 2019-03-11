@@ -34,7 +34,7 @@
 </template>
 <style lang="scss">
 .card {
-    width: 80%;
+    width: 85%;
     max-width: 900px;
     margin: 0 auto;
 }

@@ -10,7 +10,8 @@ export default new Vuex.Store({
     isMobile: false,
     isAdmin: false,
     dataUsers: {},
-    dataUser: {}
+    dataUser: {},
+    codeXXX: ''
   },
   mutations: {
     setStudent (state, payload) {
@@ -35,6 +36,10 @@ export default new Vuex.Store({
 
     setDataUser(state, payload) {
       state.dataUser = payload
+    },
+    
+    setCode(state, payload) {
+      state.codeXXX = payload
     },
   }
 })

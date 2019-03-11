@@ -12,11 +12,11 @@
         width: 100%;
         height: 70px;
         background: #4267b2;
-        float: left;
+        display: inline-block;
 
         .content {
             margin: auto;   
-            width: 80%;
+            width: 85%;
             max-width: 1140px;
             line-height: 70px;
             color: #fff;

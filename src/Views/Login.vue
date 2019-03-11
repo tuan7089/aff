@@ -34,12 +34,10 @@ export default {
             var _this = this
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(function(data) {
-                console.log('Là sao')
                 store.commit('setSignIn', true)
                 _this.checkStudent()
             })
             .catch(function(error) {
-                console.log(error)
                 _this.$message({
                     message: 'Email hoặc mật khẩu không chính xác.',
                     type: 'warning'
@@ -58,7 +56,6 @@ export default {
                 ref.once("value").then(function(snapshot) {
                 var key     = snapshot.key // Referral code
                 var detail  = snapshot.val()
-                console.log(detail)
 
                 store.commit('setDataUser', {account: detail, code: key})
             })

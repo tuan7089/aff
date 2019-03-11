@@ -61,6 +61,7 @@ a {
     width: 100%;
     float: left;
     margin-top: 15px;
+    min-height: 81.2vh;
 
     .form {
         margin: 0 auto;
@@ -112,6 +113,10 @@ a {
     }
 
     .sign-up {
+        margin-bottom: 250px !important;
+    }
+
+    .guide {
         margin-bottom: 250px !important;
     }
 }

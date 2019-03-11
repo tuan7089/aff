@@ -66,10 +66,22 @@
         </div>
     </div>
 </template>
+<script>
+// import { mapMutations } from 'vuex'
+// import store from '@/store/store'
+// import firebase from 'firebase'
+
+export default {
+    mounted() {
+        this.$route.params.id
+        this.$store.commit('setCode', this.$route.params.id)
+    }
+}
+</script>
 
 <style lang="scss">
 .home {
-    width: 80%;
+    width: 85%;
     max-width: 1140px;
     margin: 0 auto;
 

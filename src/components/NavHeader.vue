@@ -57,7 +57,7 @@
                     </router-link>
                 </div>
             </div>
-            <div class="user"></div>
+            <!-- <div class="user"></div> -->
         </div>
         
     </div>
@@ -86,7 +86,7 @@ export default {
             var _this = this
             firebase.auth().signOut()
             .then(function() {
-                _this.$router.replace('/home')
+                _this.$router.replace('/')
                 store.commit('setSignIn', false)
                 store.commit('setStudent', false)
             }).catch(function(error) {
@@ -117,7 +117,7 @@ export default {
    
     
     .row-header {
-        width: 80%;
+        width: 85%;
         margin: auto;
         padding: 15px;
 
