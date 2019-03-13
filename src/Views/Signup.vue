@@ -43,7 +43,7 @@ export default {
                         email: data.user.email,
                         date: data.user.metadata.creationTime,
                     }
-                    if(code != '') {
+                    if(code != '' && code != null && code != undefined) {
                         dataSend = Object.assign({}, dataSend, {code: code})
                     }
 
@@ -57,15 +57,16 @@ export default {
                     _this.$router.replace('thanh-toan')
                 })
                 .catch(function(error) {
+                    console.log(error)
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     if (errorCode == 'auth/weak-password') {
-                        this.$message({
+                        _this.$message({
                             message: 'Mật khẩu quá yếu!',
                             type: 'warning'
                         });
                     } else {
-                        this.$message.error('Email này đã tồn tại!.');
+                        _this.$message.error('Email này đã tồn tại!.');
                     }
                 });
             } else {
@@ -82,7 +83,7 @@ export default {
 <style lang="scss">
     .sign-up {
         text-align: center;
-        margin-bottom: calc(100vh - 646px);
+        margin-bottom: 500px;
 
         .logo {
             font-size: 40px;

@@ -30,6 +30,7 @@ export default {
     },
 
     methods: {
+        // Login: {setSingIn, setStudent, setAdmin, setDataUser }
         login() {
             var _this = this
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -86,7 +87,7 @@ export default {
 <style lang="scss">
     .login {
         text-align: center;
-        margin-bottom: calc(100vh - 629px);
+        margin-bottom: 500px;
 
         .logo {
             font-size: 40px;

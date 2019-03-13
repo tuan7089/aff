@@ -31,6 +31,7 @@ var app = firebase.initializeApp({
   messagingSenderId: "488368337878"
 })
 
+// import * as admin from "firebase-admin";
 import NavHeader from '@/components/NavHeader'
 import NavFooter from '@/components/NavFooter'
 import { log } from 'util';
@@ -44,13 +45,38 @@ export default {
   },
 
   mounted() {
+    var _this = this
+    // Set {SignIn, SetAdmin, SetStudent}
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            // Infomation
+            var email = firebase.auth().currentUser.email
+            var uid   = firebase.auth().currentUser.uid
+
+            // Signin
             store.commit('setSignIn', true)
 
-            var email = firebase.auth().currentUser.email
-            var ref = firebase.database().ref("admin");
+            // Student + Data-User
+            var ref = firebase.database().ref("users/" + uid);
+            ref.once("value")
+            .then(function(snapshot) {
+                var code     = snapshot.key // "ada"
+                var account  = snapshot.val()
+                
+                if(account.status == 1) {
+                    store.commit('setStudent', true)
+                    _this.$router.replace('/bai-hoc')
+                }
 
+                // Data User
+                var key       = snapshot.key // Referral code
+                var detail  = snapshot.val()
+
+                store.commit('setDataUser', {account: detail, code: key})
+            });
+            
+            // Admin
+            var ref = firebase.database().ref("admin")
             ref.once("value")
             .then(function(snapshot) {
                 var key     = snapshot.key // "ada"

@@ -49,7 +49,7 @@
                     <!-- <router-link to="/Affiliate" class="link-disable">
                         Affiliate VIP 
                     </router-link> -->
-                    <router-link to="/bai-hoc" v-if="isStudent">
+                    <router-link to="/bai-hoc" v-if="signIn && isStudent">
                         Bài học 
                     </router-link>
                     <router-link to="/tai-khoan" v-if="signIn">

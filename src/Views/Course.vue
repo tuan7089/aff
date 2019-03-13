@@ -1,5 +1,6 @@
 <template>
     <div class="course" oncopy="return false" oncut="return false" onpaste="return false" v-if="isStudent">
+        <h4>CHÚC MỪNG TÂN HỌC VIÊN MỚI!<br> ĐÂY LÀ BỘ 17 VIDEO KHOÁ HỌC DÀNH CHO BẠN. HÃY XEM KỸ VÀ BẮT TAY KIÊM TIỀN THÔI NÀO</h4>
         <div class="video">
             <h3 class="tile">Video</h3>
 
@@ -10,7 +11,7 @@
 
                 <div class="listVideo">
                     <div class="head">
-                        <span class="title">Khoá học kiếm tiền</span>
+                        <span class="title">NỘI DUNG KHOÁ HỌC</span>
                     </div>
                     <ul>
                         <li v-for="(video, idx) in videoAff" @click="selectVideo(idx)" :key="idx" :class="{active: video.link == linkYouTubbe}">
@@ -22,10 +23,10 @@
             </div>
         </div>
         
-        <div class="doc">
+        <!-- <div class="doc">
             <p>Tài liệu tải về</p>
             <a href="">XXXXX</a>
-        </div>
+        </div> -->
     </div>
 
     <!-- <div v-else class="not-course">
@@ -105,8 +106,8 @@ export default {
                     link: 'https://www.youtube.com/embed/4ZVVAkL37vQ'
                 },
                 {
-                    nameCourse: 'Kiếm ngay 5 triệu đến 30 triệu mỗi tháng cùng affiliate marketing',
-                    link: 'https://www.youtube.com/embed/IFRPB17wKPk'
+                    nameCourse: 'Affiliate là gì? Cách kiếm 5 triệu_ 30 triệu mỗi tháng cùng Affiliate marketing',
+                    link: 'https://www.youtube.com/embed/q3AM5w8_XMQ'
                 }
                 
             ],
@@ -133,7 +134,6 @@ export default {
                     var key     = snapshot.key // "ada"
                     var status  = snapshot.val()
 
-                    console.log(status)
                     if(status == 1) {
                         _this.isStudent = true
                     }else {
@@ -149,6 +149,29 @@ export default {
 </script>
 
 <style lang="scss">
+@media only screen and (max-width: 600px) {
+    .course { 
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        .list {
+            .video {
+                width: 100% !important;
+            }
+        }
+        iframe {
+            width: 100%;
+            height: auto;
+        }
+
+        .listVideo {
+            width: 100% !important;
+            margin-left: 0 !important;
+            margin-bottom: 20px;
+        }
+    }
+}
 .course { 
     width: 100%;
     clear: both;

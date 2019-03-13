@@ -26,7 +26,7 @@
                     <!-- {{user.status == 1 ? 'Đã là học viên' : 'Chưa là học viên'}} -->
                     
                     <el-button type="text" v-if="user.status != 1" @click="enableStudent(idx, 1)">Kích hoạt là học viên</el-button>
-                    <el-button type="text" v-else @click="enableStudent(idx, 0)">Huỷ học viên</el-button>
+                    <el-button type="text" @click="disableStudent(idx)">Xoá học viên</el-button>
                 </td>
                 <!-- <td width="40">
                     {{user.code}}
@@ -72,6 +72,7 @@
     </div>
 </template>
 <script>
+// import * as admin from "firebase-admin";
 import { mapState } from 'vuex'
 import firebase from 'firebase'
 import store from '@/store/store'
@@ -142,6 +143,19 @@ export default {
                         type: 'success'
                     });
                 }
+            });
+        },
+
+        disableStudent(idx) {
+            admin.auth().deleteUser(idx)
+            .then(function() {
+                _this.$message({
+                    message: 'Successfully deleted user.',
+                    type: 'success'
+                });
+            })
+            .catch(function(error) {
+                _this.$message.error('Error deleting user:');
             });
         },
 
