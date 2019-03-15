@@ -36,28 +36,31 @@
         </div>
 
         <h2 class="title">Hoạt động giới thiệu</h2>
-        <span>Hoa hồng chờ duyệt: </span> 
-        <span>2000000</span><br>
-        <span>Hoa hồng đã trả:</span>
-        <span>1000000</span>
-        <table>
-            <tr>
-                <th>Thứ tự</th>
-                <th>
-                    Tài khoản được giới thiệu
-                </th>
-                <th>Trạng thái</th>
-                <th>Hoa Hồng</th>
-                <th>Trạng thái nhận hoa hồng</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>maimeoxxx@gmail.com</td>
-                <td><el-tag>Học viên</el-tag></td>
-                <td>200000đ</td>
-                <td><el-tag>Đã nhận</el-tag></td>
-            </tr>
-        </table>
+        <div v-if="dataUser.share && dataUser.share.length > 0">
+            <span>Hoa hồng chờ duyệt: </span> 
+            <span>2000000</span><br>
+            <span>Hoa hồng đã nhận:</span>
+            <span>1000000</span>
+            <table>
+                <tr>
+                    <th>Thời gian</th>
+                    <th>
+                        Tài khoản được giới thiệu
+                    </th>
+                    <th>Hoa hồng</th>
+                </tr>
+                {{dataUser}}
+                <tr v-for="(data, idx) in dataUser.share" :key="idx">
+                    <td>{{data.date}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{moneyRose}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div v-else class="no-rose">
+            Bạn chưa có hoa hồng hãy chia sẻ mã giới thiều
+        </div>
 
     </div>
 </template>
@@ -68,7 +71,8 @@ import store from '@/store/store'
 
 export default {
     computed: mapState({
-        dataUser: state => state.dataUser
+        dataUser: state => state.dataUser,
+        moneyRose: state => state.moneyRose
     }),
 
     methods: {

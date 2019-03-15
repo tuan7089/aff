@@ -1,16 +1,17 @@
 <template>
     <div class="manager" v-if="isAdmin" :status="setDataUsers">
         <h1>Quản Lý Học Viên</h1>
+        Số người mua:  {{countStudent}} / {{sumST}} (Người mua khoá học / người đăng ký)
         <table class="my-table">
             <tr>
-                <th>Thời gian đăng ký</th>
+                <th>Đăng ký</th>
                 <th>Email</th>
-                <th>Trạng thái học viên</th>
-                <th>Thêm học viên</th>
+                <th>Trạng thái</th>
+                <th>Xử lý</th>
                 <!-- <th>Mã giới thiệu</th> -->
-                <th>Hoa hồng đã nhận</th>
-                <th>Hoa hồng Chờ duyệt</th>
-                <th>Chi tiết hoa hồng</th>
+                <th>Giới thiệu</th>
+                <th>HH Chờ duyệt</th>
+                <th>Chi tiết</th>
             </tr>
             <tr v-for="(user, idx) in dataUsers" :key="idx">
                 <td>
@@ -23,29 +24,28 @@
                     <el-tag type="success" v-if="user.status == 1">Học viên</el-tag>
                 </td>
                 <td>
-                    <!-- {{user.status == 1 ? 'Đã là học viên' : 'Chưa là học viên'}} -->
-                    
-                    <el-button type="text" v-if="user.status != 1" @click="enableStudent(idx, 1)">Kích hoạt là học viên</el-button>
-                    <el-button type="text" @click="disableStudent(idx)">Xoá học viên</el-button>
+                    <el-button type="text" v-if="user.status != 1" @click="enableStudent(idx, 1)" class="link">Kích hoạt<table></table></el-button>
+                    <el-button type="text" @click="disableStudent(idx)" class="color-delete link">Xoá</el-button>
                 </td>
-                <!-- <td width="40">
-                    {{user.code}}
-                </td> -->
-                <td>10000</td>
-                <td>100993</td>
+                <td>{{ user.share ? user.share : 0 }}</td>
+                <td>{{ user.rose ? user.rose : 0 }}</td>
                 <td><el-button type="text" @click="dialogTableVisible = true">Chi tiết</el-button></td>
             </tr>
         </table>
-
+        
+        <!-- Dialog ngoài lề -->
+        <!-- Xác nhận người giới thiệu -->
         <el-dialog
-            title="Nhập mã giới thiệu"
+            title="Xác nhận thưởng hoa hồng"
             :visible.sync="dialogCode"
             >
+            <p>Được chia sẻ bởi: {{shareEmail}}</p>
             <!-- v-model="form.name" -->
-            <el-input  autofocus v-model="code"></el-input>
+            Số hoa hồng thưởng cho khách: {{moneyRose}}
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogCode = false">Huỷ bỏ</el-button>
-                <el-button type="primary" @click="addCode">Xác nhận</el-button>
+                <el-button type="primary" @click="addRose(0)" plain>Không thưởng</el-button>
+                <el-button type="primary" @click="addRose(1)">Thưởng hoa hồng</el-button>
             </span>
         </el-dialog>
 
@@ -73,6 +73,7 @@
 </template>
 <script>
 // import * as admin from "firebase-admin";
+// import * as admin from "firebase-admin";
 import { mapState } from 'vuex'
 import firebase from 'firebase'
 import store from '@/store/store'
@@ -80,9 +81,17 @@ import store from '@/store/store'
 export default {
     data() {
       return {
+        //   Tổng Doanh Số khoá học
+        sumST: 0,
         dialogCode: false,
+
+        // Thông tin học viên đang xử lý
         idxUser: '',
+        emailUser: '',
         code: '',
+        shareEmail: '',
+        shareUID: '',
+
         gridData: [{
           date: 'amail@gmail.com',
           name: 'Học viên',
@@ -108,21 +117,40 @@ export default {
     computed: mapState( {
         isAdmin: state => state.isAdmin,
         dataUsers: state => state.dataUsers,
+        moneyRose: state => state.moneyRose,
 
         setDataUsers () {
             if(this.isAdmin) {
-            var ref = firebase.database().ref("users");
+                var ref = firebase.database().ref("users");
 
-            ref.once("value")
-            .then(function(snapshot) {
-                var key     = snapshot.key // "ada"
-                var users  = snapshot.val()
+                ref.once("value")
+                .then(function(snapshot) {
+                    var key     = snapshot.key // "ada"
+                    var users  = snapshot.val()
 
-                // Lấy ra thông tin toàn bộ học viên cho quan trị viên
-                store.commit('setDataUsers', users)
-            });
+                    // Lấy ra thông tin toàn bộ học viên cho quan trị viên
+                    store.commit('setDataUsers', users)
+                });
+            }
+        },
+
+        countStudent() {
+            var a = 0
+            this.sumST = 0
+            if(this.dataUsers) {
+                for (var property in this.dataUsers) {
+                    this.sumST ++
+                    if(this.dataUsers[property].status && this.dataUsers[property].status == 1) {
+                        a ++
+                    }
+                }
+            }
+           
+
+            return a
         }
-        }
+
+        
     }),
 
     methods: {
@@ -130,8 +158,28 @@ export default {
             var _this = this
             this.idxUser = idx
             console.log(this.idxUser)
+            // Lấy thông tin người kích hoạt
+            var ref = firebase.database().ref("users/" + idx + '/shareCode');
+            ref.once("value")
+            .then(function(snapshot) {
+                console.log(snapshot.key)
+                console.log(snapshot.val())
+                
+                if( snapshot.val() != null && snapshot.val() != undefined && snapshot.val() != '') {
+                    _this.dialogCode = true
+                    _this.shareEmail = snapshot.val().email
+                    _this.shareUID = snapshot.val().UID
+                }
+            })
+        },
+
+        // Kích hoạt là học viên
+        proccessEnable() {
+            console.log(this.idxUser)
+            var _this = this
+
             firebase.database().ref('users/' + this.idxUser + '/status').set(
-                status
+                1
                 , function(error) {
                 if (error) {
                 // The write failed...
@@ -140,23 +188,65 @@ export default {
                 } else {
                     _this.$message({
                         message: 'Kích hoạt thành công.',
-                        type: 'success'
+                        type: 'success',
+                        duration: 3000
                     });
                 }
             });
         },
 
+        // Xác nhận thưởng hoa hồng
+        // {type: 0: Đã được thưởng, 1 Bắt đầu thưởng}
+        addRose(type) {
+            console.log(type)
+            var _this = this
+            if(type == 0) {
+                // Cộng vào số hoa hồng đã nhận
+            }
+
+            if(type == 1) {
+                // Cộng số hoa CHƯA NHẬN
+                var ref = firebase.database().ref("users/" + _this.shareUID + '/rose')
+                ref.once("value")
+                .then(function(snapshot) {
+                    var money
+                    if( snapshot.val() != null && snapshot.val() != undefined && snapshot.val() != '') {
+                        var moneyOld = parseInt(snapshot.val())
+                        money = moneyOld + _this.moneyRose
+                    } else {
+                        money = _this.moneyRose
+                    }
+
+                    // Cộng vào số hoa hồng chưa được nhận
+                     firebase.database().ref('users/' + _this.shareUID + '/rose').set(
+                        money
+                        , function(error) {
+                        if (error) {
+                        // The write failed...
+                        _this.$message.error('Lỗi , xin báo quản trị web.');
+                        _this.dialogCode = false
+                        } else {
+                            _this.$message({
+                                message: 'Thêm hoa hồng thành công.',
+                                type: 'success',
+                                duration: 1000
+                            });
+                        }
+                    });
+
+                    // Thêm danh sách nhận hoa hồng
+                    firebase.database().ref('share/' + _this.shareUID + '/' + _this.idxUser).set(
+                        {date: 'Hôm nay', email: 'email'});
+                })
+            }
+
+            // Kick hoạt học viên
+            this.proccessEnable()
+        },
+
         disableStudent(idx) {
-            admin.auth().deleteUser(idx)
-            .then(function() {
-                _this.$message({
-                    message: 'Successfully deleted user.',
-                    type: 'success'
-                });
-            })
-            .catch(function(error) {
-                _this.$message.error('Error deleting user:');
-            });
+            let userRef = firebase.database().ref('users/' + idx);
+            userRef.remove()
         },
 
         openDialogCode(idx) {
@@ -192,6 +282,9 @@ export default {
 </script>
 
 <style lang="scss">
+.link:hover {
+    text-decoration: underline;
+}
     .manager {
         width: 100%;
         max-width: 1140px;
@@ -208,6 +301,11 @@ export default {
             span{
                 font-size: 16px;
             }
+        }
+
+        .color-delete {
+            color: #ff4c4c;
+            margin-left: 0;
         }
     }
     

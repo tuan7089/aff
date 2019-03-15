@@ -11,7 +11,8 @@ export default new Vuex.Store({
     isAdmin: false,
     dataUsers: {},
     dataUser: {},
-    codeXXX: ''
+    codeXXX: '',
+    moneyRose: 200000
   },
   mutations: {
     setStudent (state, payload) {

@@ -32,21 +32,23 @@ export default {
     },
 
     methods: {
+        // SignUp {setSigin, setDataUser} và nó chưa làm
         siginUp() {
             if(this.retypePassword == this.password) {
                 var _this = this
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(function(data) {
-                    var code = store.state.codeXXX
-                    // 
                     var dataSend = {
                         email: data.user.email,
                         date: data.user.metadata.creationTime,
                     }
-                    if(code != '' && code != null && code != undefined) {
-                        dataSend = Object.assign({}, dataSend, {code: code})
-                    }
 
+                    // Mã giới thiệu codeIntroduce là mã lưu trữ ID của người giới thiệu
+                    var code = store.state.codeXXX
+                    if(code != '' && code != null && code != undefined) {
+                        dataSend = Object.assign({}, dataSend, {codeIntroduce: code})
+                    }
+                    
                     firebase.database().ref('users/' + data.user.uid).set(dataSend);
 
                     _this.$message({
@@ -54,10 +56,12 @@ export default {
                         type: 'success'
                     });
 
+                    store.commit('setSignIn', true)
+                    store.commit('setDataUser', {account: dataSend, code: data.user.uid})
+
                     _this.$router.replace('thanh-toan')
                 })
                 .catch(function(error) {
-                    console.log(error)
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     if (errorCode == 'auth/weak-password') {

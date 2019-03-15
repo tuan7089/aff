@@ -10,7 +10,7 @@
                 </router-link>
             </div>
             
-            <div class="link">
+            <div class="link-wrapper">
                 <div class="account">
                     <div v-if="!signIn">
                         <router-link to="/dang-nhap">
@@ -137,7 +137,7 @@ export default {
             }
         }
 
-        .link {
+        .link-wrapper {
             float: right;
             margin-top: 7px;
             

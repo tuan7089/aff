@@ -14,12 +14,14 @@
   },
   "dependencies": {
     "element-ui": "^2.6.1",
+    "fast-crc32c": "^1.0.4",
     "firebase": "^5.8.5",
     "firebase-admin": "^7.0.0",
     "http2": "^3.3.7",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuex": "^3.1.0"
+    "vuex": "^3.1.0",
+    "worker-threads-pool": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
